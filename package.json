@@ -1,6 +1,6 @@
 {
   "name": "clumsy-toolbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "multiple commands to help with common tasks",
   "bin": {
     "toolbox": "./index.js"
