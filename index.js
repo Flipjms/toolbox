@@ -19,7 +19,7 @@ program
         }
 
         const folderPath = path.vuex.module + options.folder
-        const stubsPath = './stubs/vuex/module/'
+        const stubsPath = __dirname + '/stubs/vuex/module/'
 
         mkdirp(folderPath, function (err) {
             if (err) {
