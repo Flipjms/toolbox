@@ -1,0 +1,19 @@
+{
+  "name": "toolbox",
+  "version": "0.0.1",
+  "description": "multiple commands to help with common tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Flipjms/toolbox.git"
+  },
+  "author": "Filipe Santos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Flipjms/toolbox/issues"
+  },
+  "homepage": "https://github.com/Flipjms/toolbox#readme"
+}
