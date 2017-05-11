@@ -1,40 +1,21 @@
 #!/usr/bin/env node --harmony
 const program = require('commander')
-const chalk = require('chalk')
-const mkdirp = require('mkdirp')
 const fs = require('fs')
 const _ = require('underscore')
 
-const path = require('./paths')
+const modulesPath = './modules/'
+const modulesFolder = fs.readdirSync(modulesPath)
+let modules = [];
 
-program
-    .command('vuex:module')
-    .description('create boilerplate files for vuex module')
-    .option("-f, --folder [name]", "Folder Name")
-    .option("-p, --path [name]", "Path where the folder should be created")
-    .action(function(options){
-        if (typeof options.folder === 'undefined') {
-            console.error(chalk.red('ERROR: ') + 'folder name must be specified')
-            process.exit(0);
-        }
+_.each(modulesFolder, filename => {
+    modules.push({
+        name: filename,
+        initFunction: require(modulesPath+filename+'/init')
+    })
+})
 
-        const folderPath = path.vuex.module + options.folder
-        const stubsPath = __dirname + '/stubs/vuex/module/'
-
-        mkdirp(folderPath, function (err) {
-            if (err) {
-                console.error(chalk.red('ERROR: ') + err)
-                process.exit(0);
-            }
-            
-            const files = fs.readdirSync(stubsPath)
-
-            _.each(files, filename => {
-                fs.createReadStream(stubsPath + filename).pipe(fs.createWriteStream(folderPath + '/' + filename))
-            })
-
-            console.info(chalk.green('Module ' + options.folder + ' created successfully'))
-        });
-    });
+_.each(modules, module => {
+    module.initFunction(program)
+})
 
 program.parse(process.argv);
